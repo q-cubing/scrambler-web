@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="main.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/papaparse@5.3.2/papaparse.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    </head>
+    <body>
+        <div class="w-[calc(100%-16em)] px-4 py-4
+                    absolute left-[16em] min-h-[150px] max-h-[180px]
+                    text-center font-['Iosevka_Term_Slab']
+                    bg-[#333344] text-[#FFFFFF] main" id="scramble-div">
+            <form name="choosePuzzle">
+                <select id="puzzle-selector" class="rounded-sm text-md bg-[#494958] w-fit px-2 py-2">
+                    <option value="2x2">2x2x2</option>
+                    <option value="3x3" selected>3x3x3</option>
+                    <option value="4x4">4x4x4</option>
+                    <option value="5x5">5x5x5</option>
+                    <option value="6x6">6x6x6</option>
+                    <option value="7x7">7x7x7</option>
+                    <option value="3x3x2">3x3x2</option>
+                </select>
+                <button id="next-scramble" class="text-xl text-[#01A0E4] px-2 py-2" type="button" name="nextScramble">next</button>
+                <button id="menu-button" class="text-xl text-[#01A0E4] px-2 py-2" type="button">menu</button>
+            </form>
+            <p id="scramble-text" class="pt-2">hello uwu</p>
+        </div>
+        <div class="w-[calc(100vw-16em)] h-[calc(100vh-180px)] px-4 py-4
+                    absolute flex left-[16em] top-[180px]
+                    text-center place-content-center font-['Iosevka']
+                    bg-[#FFFFFF] text-[#333344] main">
+            <p id="timer" class="absolute text-center text-[180px] translate-y-[-50%] top-[50%]">0.00</p>
+            <canvas id="scramble-image" class="absolute translate-y-[-100%] top-[100%]
+                                               translate-x-[-100%] left-[100%] bg-[#222233]
+                                               border-8 border-[#222233]" width="360" height="270"></canvas>
+        </div>
+        <div class="w-fit overflow-auto px-4 pt-[200px] pb-1 h-screen font-['Iosevka'] bg-[#222233] text-[#FFFFFF] main">
+            <span>
+                <label id="import" for="import-picker" class="text-md rounded-sm bg-[#494958] text-[#FFFFFF] px-2 py-2 cursor-pointer">import</label>
+                <label id="export" for="export-button" class="text-md rounded-sm bg-[#494958] text-[#FFFFFF] px-2 py-2 cursor-pointer">export</label>
+                <button id="export-button" class="hidden"></button>
+                <input id="import-picker" class="hidden" type="file"</input>
+            </span>
+            <br>
+            <table class="table-fixed mt-4 min-w-[14em] max-w-[16em]">
+                <thead>
+                    <tr class="text-center">
+                        <th id="mean" class="border-2 border-[#444455] text-xl" colspan="4">mean: -</th>
+                    </tr>
+                    <tr class="text-center">
+                        <th class="border-2 border-[#444455]">#</th>
+                        <th class="border-2 border-[#444455]">t</th>
+                        <th class="border-2 border-[#444455]">ao5</th>
+                        <th class="border-2 border-[#444455]">ao12</th>
+                    </tr>
+                </thead>
+                <tbody id="solves-table">
+                </tbody>
+            </table>
+        </div>
+            <div id="menu" class="hidden absolute flex justify-center items-center
+                                  z-[100] h-[100%] w-[100%] top-[0%]
+                                  bg-[#22223328] backdrop-blur-[2px]">
+                <div class="px-4 py-4 bg-[#333344EE] w-[600px] h-[180px] rounded-lg backdrop-blur-[6px] text-center font-['Iosevka'] text-[#FFFFFF]">
+                    <h1 id="menu-header" class="font-bold">solve #0</h1>
+                    <span>
+                        <button id="dnf" class="text-md rounded-sm bg-[#494958] text-[#FFFFFF] px-2 py-2">DNF</button>
+                        <button id="plus2" class="text-md rounded-sm bg-[#494958] text-[#FFFFFF] px-2 py-2">+2</button>
+                        <button id="remove" class="text-md rounded-sm bg-[#494958] text-[#FFFFFF] px-2 py-2">remove</button>
+                    </span>
+                </div>
+            </div>
+            <script src="scramble.js"></script>
+            <script src="img2x2.js"></script>
+            <script src="img3x3.js"></script>
+            <script src="img4x4.js"></script>
+            <script src="img3x3x2.js"></script>
+            <script src="menu.js"></script>
+            <script src="timer.js"></script>
+            <script src="import-export.js"></script>
+    </body>
+</html>
+
